@@ -1,0 +1,57 @@
+Scaling MNIST 1k on GPU
+
+real	0m0.381s
+user	0m0.120s
+sys	0m0.248s
+
+Scaling MNIST 10k on GPU
+
+real	0m0.908s
+user	0m0.625s
+sys	0m0.266s
+
+Scaling MNIST 100k on GPU
+
+real	0m7.731s
+user	0m6.730s
+sys	0m0.613s
+
+Scaling MNIST 1M on GPU
+
+real	1m24.834s
+user	1m16.297s
+sys	0m4.326s
+
+Scaling MNIST 8M on GPU
+
+real	11m50.377s
+user	10m54.638s
+sys	0m42.793s
+
+Predicting MNIST 1k on GPU
+Accuracy = 92.2% (922/1000) (classification)
+
+real	0m5.672s
+user	0m4.217s
+sys	0m1.452s
+
+Predicting MNIST 10k on GPU
+Accuracy = 94.34% (9434/10000) (classification)
+
+real	0m13.675s
+user	0m10.481s
+sys	0m3.192s
+
+Predicting MNIST 100k on GPU
+Accuracy = 91.011% (91011/100000) (classification)
+
+real	1m51.934s
+user	1m26.459s
+sys	0m25.494s
+
+Predicting MNIST 1M on GPU
+Accuracy = 86.6887% (866887/1000000) (classification)
+
+real	7m51.570s
+user	7m16.418s
+sys	0m9.370s

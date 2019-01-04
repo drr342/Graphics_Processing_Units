@@ -1,0 +1,198 @@
+\documentclass{article}
+
+% if you need to pass options to natbib, use, e.g.:
+% \PassOptionsToPackage{numbers, compress}{natbib}
+% before loading nips_2017
+%
+% to avoid loading the natbib package, add option nonatbib:
+% \usepackage[nonatbib]{nips_2017}
+
+%\usepackage{main}
+
+% to compile a camera-ready version, add the [final] option, e.g.:
+\usepackage[final]{main}
+
+\usepackage[utf8]{inputenc} % allow utf-8 input
+\usepackage[T1]{fontenc}    % use 8-bit T1 fonts
+\usepackage{hyperref}       % hyperlinks
+\usepackage{url}            % simple URL typesetting
+\usepackage{booktabs}       % professional-quality tables
+\usepackage{amsfonts}       % blackboard math symbols
+\usepackage{nicefrac}       % compact symbols for 1/2, etc.
+\usepackage{microtype}      % microtypography
+\usepackage{multicol}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{bbm}
+\usepackage{enumerate}
+\usepackage[linguistics]{forest}
+\usepackage{adjustbox}
+\usepackage{bbm}
+%\usepackage[margin=0.5in]{geometry}
+%\DeclareMathOperator*{\argmax}{argmax}
+
+\usepackage{listings}
+\usepackage{color}
+ 
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+ 
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\ttfamily\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\small,
+    columns=fullflexible,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=t,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=4,
+}
+ 
+\lstset{style=mystyle}
+
+\title{Graphics Processing Units - Fall 2018\\
+       \Large Homework 1}
+%\graphicspath{{images/}}
+\setcitestyle{round, sort, numbers}
+
+% The \author macro works with any number of authors. There are two
+% commands used to separate the names and addresses of multiple
+% authors: \And and \AND.
+%
+% Using \And between authors leaves it to LaTeX to determine where to
+% break the lines. Using \AND forces a line break at that point. So,
+% if LaTeX puts 3 of 4 authors names on the first line, and the last
+% on the second line, try using \AND instead of \And before the third
+% author name.
+
+\author{
+  Daniel Rivera Ruiz\\
+  Department of Computer Science\\
+  New York University\\
+  \href{mailto:drr342@nyu.edu}{\texttt{drr342@nyu.edu}}\\
+}
+
+\begin{document}
+
+\maketitle
+
+% \cite{} - in-line citation author, year in parenthesis.
+% \citep{} - all citation info in parenthesis.
+
+%	\begin{figure}[ht]
+%		\centering
+%		\frame{
+%            \includegraphics[width=1.0\linewidth]{tree.png}
+%       }
+%		\caption{Classification results for the sentence \textit{"There are slow and repetitive parts, but it has just enough spice to keep it                  interesting."} using the Stanford Sentiment Treebank. As can be seen, sentiment scores are available for each phrase.}
+%		\label{tree}
+%	\end{figure}
+
+\begin{enumerate}[1.]
+    
+    \item To design the next generation GPU, a company has several choices to make:
+    \begin{enumerate}[1)]
+        \item Increasing number of SM.
+        \item Increasing number of SPs (or cuda cores) per SM.
+        \item Increasing memory bandwidth.
+        \item Increasing shared memory per SM.
+        \item Increasing L2 cache size.
+    \end{enumerate}
+    Discuss the pros and cons for each one of the following scenarios:
+    \begin{table}[h!t]
+	\centering
+	\begin{tabular}{p{1.5cm}p{6cm}p{6cm}}
+		\toprule
+		\textbf{Scenario} & \textbf{Pros} & \textbf{Cons}\\
+		\midrule
+		a) Doing 1 &
+		If the number of SPs is fixed, increasing the number of SMs would mean less SPs per SM, and therefore the hardware interconnections in the SM would be simplified. & 
+		With less SPs per SM, the number of threads that can communicate with one another, synchronize and share memory is reduced. \\
+		\midrule
+		b) Doing 2 &
+		More SPs per SM would mean faster running applications since there would be more threads communicating, synchronizing and sharing memory. & 
+		With more SPs, the hardware required in an SM to support all the interactions among threads would need to be more robust and therefore more expensive. \\
+		\midrule
+		c) Doing 3 &
+		Increasing the memory bandwidth would mean that more data can get to the cores simultaneously, accelerating the overall time of execution of an application. & 
+		To increase the bandwidth of the memory a channel of communication with more capacity and less noise is required, which translates to more expensive hardware. \\
+		\midrule
+		d) Doing 4 &
+		More shared memory per SM would mean that the access to GDRAM could be substantially reduced, therefore accelerating the overall time of execution of an application. & 
+		More shared memory per SM would also mean less space in the SM for actual SPs. With less processing units, the amount of parallelization would be reduced. \\
+		\midrule
+		e) Doing 5 &
+		Similarly to the previous condition, increasing the L2 cache would reduce access to GDRAM and improve data transfer latency. & 
+		A bigger L2 cache would take up more space on the GPU chip, therefore compromising other components (e.g. SPs, shared memory) and possibly overall performance. \\
+		\midrule
+		f) Doing 1 and 2 &
+		Increasing both the number of SPs and SMs would mean more computation and parallelization capabilities. & 
+		It would be necessary to compromise other components of the system, use smaller technology (unlikely) or make a larger device. \\
+		\midrule
+	\end{tabular}
+    \end{table}
+    \newpage
+    \begin{table}[h!t]
+	\centering
+	\begin{tabular}{p{1.5cm}p{5.5cm}p{5.5cm}}
+		\toprule
+		\textbf{Scenario} & \textbf{Pros} & \textbf{Cons}\\
+		\midrule
+		g) Doing 2 and 3 &
+		Applications could run much faster because there would be more cores to perform computations, plus the memory infrastructure to provide them with data fast enough. & 
+		The device would definitely need to be larger and more expensive to manufacture, due to the additional/more sophisticated components required. \\
+		\midrule
+		h) Doing 1 and 4 &
+		More SMs (with fix total SPs) would mean less complex hardware interconnections, plus the extra shared memory could reduce the number of data transfers to/from GDRAM. & 
+		With less SPs per SM, the number of threads that can actually benefit from the larger shared memory is smaller. \\
+		\midrule
+		i) Doing 2 and 4 &
+		With more SPs, the number of threads that benefit from the larger shared memory would increase and therefore the application would run faster. & 
+		Other components of the device would have to be compromised or the device made larger and therefore more expensive. \\
+		\midrule
+		j) Doing 4 and 5 &
+		With more shared memory and L2 cache, the access to GDRAM could be substantially reduced and potentially make the application faster. & 
+		The computation and parallelization capabilities would be compromised (less SPs to make space for more memory) and potentially make the application slower. \\
+		\midrule
+		k) Doing 3 and 5 &
+		The bigger L2 cache would make the access to GDRAM less often, plus the increased bandwidth would allow for more data to be fetched every time. & 
+		The hardware would be more expensive, and the device bigger (or other components would have to be compromised). Besides, the cores might not take full advantage of the improved memory capabilities. \\
+		\bottomrule
+		\end{tabular}
+    \end{table}
+    
+    \item Let’s assume an application has a lot of independent and similar operations to be performed on data. Does the amount of data has anything to do with the expected performance of the GPU? Justify.
+    
+    The amount of data has a lot to do with the expected performance of the GPU. The advantages that the GPU provides rely strongly on its SIMD (single instruction, multiple data) architecture. This means that the GPU will schedule the same set of instructions to be executed in parallel over different portions of data. Therefore, if there is not enough data to feed the GPU, the execution of the application might even be slower than in a CPU. The number of cores in a GPU is much larger than that of a CPU, but the cores are also simpler and so they have to be utilized simultaneously (with different data) to profit from them. Also, the overhead generated by transferring data from the CPU to the GPU, and from the GPU's memory to the execution cores will not be worth it if there is not enough data to work with, i.e. it will take more time to transfer the data than to actually process it.
+
+    \item For each of the following applications state whether it is beneficial to implement them on a GPU and justify your answer.
+    \begin{enumerate}[a)]
+        \item Finding whether a number exist in an array of 10M integers.\\
+        \emph{It is beneficial}. The process can be easily parallelized by comparing the number to several items in the array at once. It might even have additional functionality by returning to the CPU all the indices in the array where the number was found instead of just the index of the first occurrence. 
+        \item Calculating the first 1M Fibonacci numbers.\\
+        \emph{It can be beneficial}. Depending on the algorithm used, it can be beneficial to calculate the first 1M Fibonacci numbers in a GPU. If a closed-form formula (like \href{https://en.wikipedia.org/wiki/Fibonacci_number#Closed-form_expression}{this one}) is used, then it is easy to calculate several numbers independently and therefore in parallel. However, if the regular recursive definition is used, it is less likely that a GPU can help because the calculations must be done in order and are dependant from one another. 
+        \item Multiplying two 100x100 matrices.\\
+        \emph{It can be beneficial}. This one will depend largely on the CPU and GPU available, as well as the connections between them. The actual multiplication will definitely be faster in the GPU, since several elements of the resulting matrix can be calculated in parallel. However, depending on the overhead generated by data transfer latency: CPU Memory $\rightarrow$ GPU Memory $\rightarrow$ GPU cores, it might take longer for the overall process to complete in the GPU than in the CPU alone.
+        \item Adding 1Mx1M matrices.\\
+        \emph{It is beneficial}. In this case the amount of data is big enough to overcome the latency of the system, and since all the addition operations are independent from one another, they can easily be performed in parallel in the GPU.
+    \end{enumerate}
+	    
+	\item We said in class that communication between system memory and CPU memory is very expensive in terms of latency, which negatively affects performance. Why not having one main memory for both the CPU and GPU? State twp reasons at least.
+	\begin{itemize}
+	    \item Memory in the CPU and the GPU are optimized for different things, and therefore it would be difficult to have one unified memory to serve them both. While in the CPU low latency is crucial for sequential operations over one piece of data, in the GPU the main focus is high bandwidth, to be able to supply all the cores with different portions of the data on which to perform operations.
+	    \item Having only one memory for both CPU and GPU would make it much more difficult to ensure data integrity. If we had all the cores from the CPU plus all the cores from the GPU trying to read and write data concurrently from the same memory chip, the efforts required in both hardware and software would be much larger in order to satisfy all the memory access petitions while maintaining data integrity.  
+	\end{itemize}
+
+\end{enumerate}
+\end{document}

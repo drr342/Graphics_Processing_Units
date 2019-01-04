@@ -1,0 +1,57 @@
+Scaling MNIST 1k on CPU
+
+real	0m0.250s
+user	0m0.190s
+sys	0m0.005s
+
+Scaling MNIST 10k on CPU
+
+real	0m1.934s
+user	0m1.732s
+sys	0m0.032s
+
+Scaling MNIST 100k on CPU
+
+real	0m16.488s
+user	0m16.240s
+sys	0m0.232s
+
+Scaling MNIST 1M on CPU
+
+real	3m9.149s
+user	3m6.561s
+sys	0m2.329s
+
+Scaling MNIST 8M on CPU
+
+real	25m33.080s
+user	25m9.501s
+sys	0m19.748s
+
+Predicting MNIST 1k on CPU
+Accuracy = 93.9% (939/1000) (classification)
+
+real	0m14.733s
+user	0m14.602s
+sys	0m0.099s
+
+Predicting MNIST 10k on CPU
+Accuracy = 94.47% (9447/10000) (classification)
+
+real	2m17.913s
+user	2m17.412s
+sys	0m0.151s
+
+Predicting MNIST 100k on CPU
+Accuracy = 91.009% (91009/100000) (classification)
+
+real	23m10.427s
+user	23m9.406s
+sys	0m0.383s
+
+Predicting MNIST 1M on CPU
+Accuracy = 86.6922% (866922/1000000) (classification)
+
+real	253m38.029s
+user	253m32.591s
+sys	0m2.983s

@@ -1,0 +1,60 @@
+1000 1000
+Checksum: 5077754.500000
+Time taken for CPU is 10.420000
+Checksum: 5077754.500000
+Time taken for GPU is 0.290000
+
+2000 1000
+Checksum: 10209394.000000
+Time taken for CPU is 40.350000
+Checksum: 10209394.000000
+Time taken for GPU is 0.670000
+
+4000 1000
+Checksum: 20496352.000000
+Time taken for CPU is 150.420000
+Checksum: 20496352.000000
+Time taken for GPU is 2.110000
+
+8000 1000
+Checksum: 40963320.000000
+Time taken for CPU is 580.670000
+Checksum: 40963320.000000
+Time taken for GPU is 7.710000
+
+16000 1000
+Checksum: 81389736.000000
+Time taken for CPU is 2276.140000
+Checksum: 81389736.000000
+Time taken for GPU is 30.300000
+
+1000 2000
+Checksum: 7063149.500000
+Time taken for CPU is 20.560000
+Checksum: 7063149.500000
+Time taken for GPU is 0.420000
+
+1000 4000
+Checksum: 9815336.000000
+Time taken for CPU is 37.800000
+Checksum: 9815336.000000
+Time taken for GPU is 0.690000
+
+1000 8000
+Checksum: 13597577.000000
+Time taken for CPU is 72.210000
+Checksum: 13597577.000000
+Time taken for GPU is 1.220000
+
+1000 16000
+Checksum: 18740056.000000
+Time taken for CPU is 141.340000
+Checksum: 18740056.000000
+Time taken for GPU is 2.230000
+
+1000 32000
+Checksum: 25595662.000000
+Time taken for CPU is 277.850000
+Checksum: 25595662.000000
+Time taken for GPU is 4.250000
+

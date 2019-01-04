@@ -1,0 +1,338 @@
+NVPROF Scaling MNIST 1k on GPU
+==209779== NVPROF is profiling process 209779, command: ./svm-scale-gpu -l 0 -u 1 /scratch/drr342/mnist/mnist1k
+==209779== Profiling application: ./svm-scale-gpu -l 0 -u 1 /scratch/drr342/mnist/mnist1k
+==209779== Profiling result:
+            Type  Time(%)      Time     Calls       Avg       Min       Max  Name
+ GPU activities:   54.77%  908.15us         1  908.15us  908.15us  908.15us  find_min(float*, int, int)
+                   31.88%  528.57us         1  528.57us  528.57us  528.57us  scale_problem(float*, float*, float*, int, int, int, int, float, float, float, float)
+                   13.07%  216.70us         1  216.70us  216.70us  216.70us  find_max(float*, int, int)
+                    0.28%  4.5760us         2  2.2880us  2.0160us  2.5600us  [CUDA memcpy DtoH]
+      API calls:   98.80%  391.33ms         1  391.33ms  391.33ms  391.33ms  cuDevicePrimaryCtxRetain
+                    0.29%  1.1531ms         2  576.57us  231.83us  921.32us  cudaMemcpyAsync
+                    0.19%  758.97us        96  7.9050us     122ns  308.04us  cuDeviceGetAttribute
+                    0.19%  757.22us         1  757.22us  757.22us  757.22us  cudaGetDeviceProperties
+                    0.15%  601.67us         5  120.33us  28.493us  276.66us  cudaFree
+                    0.14%  541.66us         2  270.83us  7.5320us  534.13us  cudaDeviceSynchronize
+                    0.09%  343.93us         2  171.96us  5.6950us  338.23us  cudaMalloc
+                    0.04%  164.65us         1  164.65us  164.65us  164.65us  cuDeviceTotalMem
+                    0.04%  150.04us         3  50.013us  26.347us  84.874us  cudaLaunchKernel
+                    0.02%  80.691us         2  40.345us  5.9000us  74.791us  cudaStreamCreate
+                    0.02%  74.381us         3  24.793us  12.176us  49.257us  cudaMallocManaged
+                    0.02%  68.619us         1  68.619us  68.619us  68.619us  cuDeviceGetName
+                    0.01%  20.719us         2  10.359us  7.4140us  13.305us  cudaStreamDestroy
+                    0.00%  2.8850us         2  1.4420us     362ns  2.5230us  cuModuleGetGlobal
+                    0.00%  2.7680us         1  2.7680us  2.7680us  2.7680us  cuDeviceGetPCIBusId
+                    0.00%  2.6550us         4     663ns     155ns  2.1100us  cuModuleGetFunction
+                    0.00%  2.1130us         1  2.1130us  2.1130us  2.1130us  cudaGetDevice
+                    0.00%  1.8630us         3     621ns     146ns  1.4970us  cuDeviceGetCount
+                    0.00%  1.4180us         1  1.4180us  1.4180us  1.4180us  cuCtxSetCurrent
+                    0.00%  1.4060us         2     703ns     393ns  1.0130us  cuCtxGetCurrent
+                    0.00%  1.3430us         2     671ns     180ns  1.1630us  cudaGetLastError
+                    0.00%     753ns         2     376ns     161ns     592ns  cuDeviceGet
+                    0.00%     231ns         1     231ns     231ns     231ns  cuCtxGetDevice
+
+==209779== Unified Memory profiling result:
+Device "Tesla V100-SXM2-16GB (0)"
+   Count  Avg Size  Min Size  Max Size  Total Size  Total Time  Name
+      26  56.615KB  4.0000KB  440.00KB  1.437500MB  196.8960us  Host To Device
+      16  96.000KB  4.0000KB  0.9961MB  1.500000MB  141.9840us  Device To Host
+       9         -         -         -           -  1.001536ms  Gpu page fault groups
+Total CPU Page faults: 16
+
+NVPROF Scaling MNIST 10k on GPU
+==209793== NVPROF is profiling process 209793, command: ./svm-scale-gpu -l 0 -u 1 /scratch/drr342/mnist/mnist10k
+==209793== Profiling application: ./svm-scale-gpu -l 0 -u 1 /scratch/drr342/mnist/mnist10k
+==209793== Profiling result:
+            Type  Time(%)      Time     Calls       Avg       Min       Max  Name
+ GPU activities:   71.62%  6.9941ms         1  6.9941ms  6.9941ms  6.9941ms  find_min(float*, int, int)
+                   21.66%  2.1155ms         1  2.1155ms  2.1155ms  2.1155ms  find_max(float*, int, int)
+                    6.68%  651.99us         1  651.99us  651.99us  651.99us  scale_problem(float*, float*, float*, int, int, int, int, float, float, float, float)
+                    0.05%  4.6080us         2  2.3040us  2.0160us  2.5920us  [CUDA memcpy DtoH]
+      API calls:   96.00%  342.75ms         1  342.75ms  342.75ms  342.75ms  cuDevicePrimaryCtxRetain
+                    2.56%  9.1425ms         2  4.5712ms  2.1329ms  7.0096ms  cudaMemcpyAsync
+                    0.51%  1.8268ms         5  365.35us  47.196us  1.3706ms  cudaFree
+                    0.22%  782.60us         1  782.60us  782.60us  782.60us  cudaGetDeviceProperties
+                    0.21%  750.35us        96  7.8160us     122ns  307.17us  cuDeviceGetAttribute
+                    0.19%  666.37us         2  333.18us  8.7870us  657.58us  cudaDeviceSynchronize
+                    0.11%  386.12us         2  193.06us  5.9160us  380.21us  cudaMalloc
+                    0.07%  264.96us         3  88.319us  24.646us  148.16us  cudaLaunchKernel
+                    0.04%  143.92us         1  143.92us  143.92us  143.92us  cuDeviceTotalMem
+                    0.03%  109.49us         2  54.743us  6.0820us  103.41us  cudaStreamCreate
+                    0.03%  96.455us         3  32.151us  13.118us  69.953us  cudaMallocManaged
+                    0.02%  68.485us         1  68.485us  68.485us  68.485us  cuDeviceGetName
+                    0.01%  31.600us         2  15.800us  15.754us  15.846us  cudaStreamDestroy
+                    0.00%  3.0380us         4     759ns     159ns  2.4790us  cuModuleGetFunction
+                    0.00%  2.9320us         1  2.9320us  2.9320us  2.9320us  cuDeviceGetPCIBusId
+                    0.00%  2.7070us         2  1.3530us     333ns  2.3740us  cuModuleGetGlobal
+                    0.00%  1.8590us         1  1.8590us  1.8590us  1.8590us  cuCtxSetCurrent
+                    0.00%  1.8330us         1  1.8330us  1.8330us  1.8330us  cudaGetDevice
+                    0.00%  1.5420us         3     514ns     220ns     996ns  cuDeviceGetCount
+                    0.00%  1.4540us         2     727ns     205ns  1.2490us  cudaGetLastError
+                    0.00%  1.3610us         2     680ns     375ns     986ns  cuCtxGetCurrent
+                    0.00%     890ns         2     445ns     156ns     734ns  cuDeviceGet
+                    0.00%     206ns         1     206ns     206ns     206ns  cuCtxGetDevice
+
+==209793== Unified Memory profiling result:
+Device "Tesla V100-SXM2-16GB (0)"
+   Count  Avg Size  Min Size  Max Size  Total Size  Total Time  Name
+     759  16.526KB  4.0000KB  768.00KB  12.25000MB  3.001504ms  Host To Device
+      82  153.76KB  4.0000KB  0.9961MB  12.31250MB  1.088000ms  Device To Host
+      23         -         -         -           -  5.174336ms  Gpu page fault groups
+Total CPU Page faults: 80
+
+NVPROF Scaling MNIST 100k on GPU
+==209806== NVPROF is profiling process 209806, command: ./svm-scale-gpu -l 0 -u 1 /scratch/drr342/mnist/mnist100k
+==209806== Profiling application: ./svm-scale-gpu -l 0 -u 1 /scratch/drr342/mnist/mnist100k
+==209806== Profiling result:
+            Type  Time(%)      Time     Calls       Avg       Min       Max  Name
+ GPU activities:   64.17%  59.011ms         1  59.011ms  59.011ms  59.011ms  find_min(float*, int, int)
+                   25.97%  23.884ms         1  23.884ms  23.884ms  23.884ms  find_max(float*, int, int)
+                    9.86%  9.0673ms         1  9.0673ms  9.0673ms  9.0673ms  scale_problem(float*, float*, float*, int, int, int, int, float, float, float, float)
+                    0.01%  5.0240us         2  2.5120us  2.1120us  2.9120us  [CUDA memcpy DtoH]
+      API calls:   75.57%  341.28ms         1  341.28ms  341.28ms  341.28ms  cuDevicePrimaryCtxRetain
+                   18.36%  82.924ms         2  41.462ms  23.899ms  59.025ms  cudaMemcpyAsync
+                    3.34%  15.096ms         5  3.0192ms  26.467us  14.324ms  cudaFree
+                    2.01%  9.0848ms         2  4.5424ms  12.665us  9.0721ms  cudaDeviceSynchronize
+                    0.18%  834.89us        96  8.6960us     119ns  375.39us  cuDeviceGetAttribute
+                    0.17%  786.43us         1  786.43us  786.43us  786.43us  cudaGetDeviceProperties
+                    0.13%  566.94us         3  188.98us  30.585us  428.15us  cudaLaunchKernel
+                    0.09%  423.35us         2  211.67us  5.9540us  417.39us  cudaMalloc
+                    0.05%  210.50us         2  105.25us  6.3280us  204.17us  cudaStreamCreate
+                    0.03%  147.98us         1  147.98us  147.98us  147.98us  cuDeviceTotalMem
+                    0.03%  122.39us         3  40.797us  7.9120us  90.900us  cudaMallocManaged
+                    0.02%  69.397us         1  69.397us  69.397us  69.397us  cuDeviceGetName
+                    0.01%  40.778us         2  20.389us  17.726us  23.052us  cudaStreamDestroy
+                    0.00%  3.2550us         2  1.6270us     335ns  2.9200us  cuModuleGetGlobal
+                    0.00%  2.8170us         4     704ns     158ns  2.2350us  cuModuleGetFunction
+                    0.00%  2.7690us         1  2.7690us  2.7690us  2.7690us  cuDeviceGetPCIBusId
+                    0.00%  1.8520us         1  1.8520us  1.8520us  1.8520us  cudaGetDevice
+                    0.00%  1.6040us         3     534ns     210ns  1.0780us  cuDeviceGetCount
+                    0.00%  1.5230us         2     761ns     436ns  1.0870us  cuCtxGetCurrent
+                    0.00%  1.4880us         2     744ns     180ns  1.3080us  cudaGetLastError
+                    0.00%  1.3960us         1  1.3960us  1.3960us  1.3960us  cuCtxSetCurrent
+                    0.00%     932ns         2     466ns     176ns     756ns  cuDeviceGet
+                    0.00%     231ns         1     231ns     231ns     231ns  cuCtxGetDevice
+
+==209806== Unified Memory profiling result:
+Device "Tesla V100-SXM2-16GB (0)"
+   Count  Avg Size  Min Size  Max Size  Total Size  Total Time  Name
+    3401  39.875KB  4.0000KB  876.00KB  132.4375MB  21.41501ms  Host To Device
+     810  167.51KB  4.0000KB  0.9961MB  132.5000MB  11.69088ms  Device To Host
+     177         -         -         -           -  35.37683ms  Gpu page fault groups
+Total CPU Page faults: 807
+
+NVPROF Scaling MNIST 1M on GPU
+==209847== NVPROF is profiling process 209847, command: ./svm-scale-gpu -l 0 -u 1 /scratch/drr342/mnist/mnist1m
+==209847== Profiling application: ./svm-scale-gpu -l 0 -u 1 /scratch/drr342/mnist/mnist1m
+==209847== Profiling result:
+            Type  Time(%)      Time     Calls       Avg       Min       Max  Name
+ GPU activities:   75.94%  1.12011s         1  1.12011s  1.12011s  1.12011s  find_min(float*, int, int)
+                   15.34%  226.29ms         1  226.29ms  226.29ms  226.29ms  find_max(float*, int, int)
+                    8.72%  128.61ms         1  128.61ms  128.61ms  128.61ms  scale_problem(float*, float*, float*, int, int, int, int, float, float, float, float)
+                    0.00%  4.6400us         2  2.3200us  1.9520us  2.6880us  [CUDA memcpy DtoH]
+      API calls:   68.49%  1.34645s         2  673.22ms  226.31ms  1.12013s  cudaMemcpyAsync
+                   17.35%  341.07ms         1  341.07ms  341.07ms  341.07ms  cuDevicePrimaryCtxRetain
+                    7.41%  145.63ms         5  29.126ms  106.35us  144.16ms  cudaFree
+                    6.54%  128.63ms         2  64.314ms  12.762us  128.62ms  cudaDeviceSynchronize
+                    0.08%  1.6534ms         3  551.14us  37.605us  1.5061ms  cudaLaunchKernel
+                    0.04%  774.44us         1  774.44us  774.44us  774.44us  cudaGetDeviceProperties
+                    0.04%  760.42us        96  7.9210us     127ns  305.02us  cuDeviceGetAttribute
+                    0.02%  394.48us         2  197.24us  7.2660us  387.22us  cudaMalloc
+                    0.01%  204.65us         2  102.32us  7.4500us  197.20us  cudaStreamCreate
+                    0.01%  165.57us         3  55.188us  19.600us  124.26us  cudaMallocManaged
+                    0.01%  146.15us         1  146.15us  146.15us  146.15us  cuDeviceTotalMem
+                    0.00%  68.625us         1  68.625us  68.625us  68.625us  cuDeviceGetName
+                    0.00%  43.427us         2  21.713us  17.627us  25.800us  cudaStreamDestroy
+                    0.00%  3.1140us         4     778ns     157ns  2.5490us  cuModuleGetFunction
+                    0.00%  2.9260us         2  1.4630us     454ns  2.4720us  cuModuleGetGlobal
+                    0.00%  2.7560us         1  2.7560us  2.7560us  2.7560us  cuDeviceGetPCIBusId
+                    0.00%  2.0250us         1  2.0250us  2.0250us  2.0250us  cudaGetDevice
+                    0.00%  1.5810us         2     790ns     175ns  1.4060us  cudaGetLastError
+                    0.00%  1.4420us         2     721ns     487ns     955ns  cuCtxGetCurrent
+                    0.00%  1.3220us         3     440ns     122ns     876ns  cuDeviceGetCount
+                    0.00%  1.2110us         1  1.2110us  1.2110us  1.2110us  cuCtxSetCurrent
+                    0.00%     719ns         2     359ns     179ns     540ns  cuDeviceGet
+                    0.00%     227ns         1     227ns     227ns     227ns  cuCtxGetDevice
+
+==209847== Unified Memory profiling result:
+Device "Tesla V100-SXM2-16GB (0)"
+   Count  Avg Size  Min Size  Max Size  Total Size  Total Time  Name
+   17212  90.109KB  4.0000KB  0.9961MB  1.479126GB  178.2109ms  Host To Device
+    9098  170.48KB  4.0000KB  0.9961MB  1.479187GB  132.3023ms  Device To Host
+    6533         -         -         -           -  532.1314ms  Gpu page fault groups
+Total CPU Page faults: 9107
+
+NVPROF Scaling MNIST 8M on GPU
+==209906== NVPROF is profiling process 209906, command: ./svm-scale-gpu -l 0 -u 1 /scratch/drr342/mnist/mnist8m
+==209906== Profiling application: ./svm-scale-gpu -l 0 -u 1 /scratch/drr342/mnist/mnist8m
+==209906== Profiling result:
+            Type  Time(%)      Time     Calls       Avg       Min       Max  Name
+ GPU activities:   71.62%  14.6245s         1  14.6245s  14.6245s  14.6245s  find_min(float*, int, int)
+                   23.19%  4.73471s         1  4.73471s  4.73471s  4.73471s  find_max(float*, int, int)
+                    5.19%  1.06048s         1  1.06048s  1.06048s  1.06048s  scale_problem(float*, float*, float*, int, int, int, int, float, float, float, float)
+                    0.00%  4.7360us         2  2.3680us  1.9840us  2.7520us  [CUDA memcpy DtoH]
+      API calls:   89.52%  19.3592s         2  9.67961s  4.73473s  14.6245s  cudaMemcpyAsync
+                    4.90%  1.06050s         2  530.25ms  16.452us  1.06049s  cudaDeviceSynchronize
+                    3.95%  854.40ms         5  170.88ms  110.00us  848.32ms  cudaFree
+                    1.60%  346.20ms         1  346.20ms  346.20ms  346.20ms  cuDevicePrimaryCtxRetain
+                    0.01%  1.6665ms         3  555.51us  41.949us  1.5162ms  cudaLaunchKernel
+                    0.00%  773.32us         1  773.32us  773.32us  773.32us  cudaGetDeviceProperties
+                    0.00%  754.55us        96  7.8590us     120ns  308.54us  cuDeviceGetAttribute
+                    0.00%  407.36us         2  203.68us  5.6520us  401.71us  cudaMalloc
+                    0.00%  213.81us         2  106.90us  5.8110us  208.00us  cudaStreamCreate
+                    0.00%  189.59us         3  63.195us  23.067us  122.20us  cudaMallocManaged
+                    0.00%  143.00us         1  143.00us  143.00us  143.00us  cuDeviceTotalMem
+                    0.00%  69.108us         1  69.108us  69.108us  69.108us  cuDeviceGetName
+                    0.00%  45.299us         2  22.649us  17.382us  27.917us  cudaStreamDestroy
+                    0.00%  3.0730us         4     768ns     160ns  2.4870us  cuModuleGetFunction
+                    0.00%  2.9580us         2  1.4790us     353ns  2.6050us  cuModuleGetGlobal
+                    0.00%  2.8770us         1  2.8770us  2.8770us  2.8770us  cuDeviceGetPCIBusId
+                    0.00%  2.1260us         1  2.1260us  2.1260us  2.1260us  cudaGetDevice
+                    0.00%  1.9600us         2     980ns     338ns  1.6220us  cudaGetLastError
+                    0.00%  1.4010us         3     467ns     150ns  1.0070us  cuDeviceGetCount
+                    0.00%  1.3330us         2     666ns     440ns     893ns  cuCtxGetCurrent
+                    0.00%  1.2330us         1  1.2330us  1.2330us  1.2330us  cuCtxSetCurrent
+                    0.00%     942ns         2     471ns     137ns     805ns  cuDeviceGet
+                    0.00%     207ns         1     207ns     207ns     207ns  cuCtxGetDevice
+
+==209906== Unified Memory profiling result:
+Device "Tesla V100-SXM2-16GB (0)"
+   Count  Avg Size  Min Size  Max Size  Total Size  Total Time  Name
+   82249  154.68KB  4.0000KB  0.9961MB  12.13318GB   1.311399s  Host To Device
+   74556  170.65KB  4.0000KB  0.9961MB  12.13324GB   1.089467s  Device To Host
+   38679         -         -         -           -   3.952257s  Gpu page fault groups
+Total CPU Page faults: 74648
+
+NVPROF Predicting MNIST 1k on GPU
+==211385== NVPROF is profiling process 211385, command: ./svm-predict-gpu /scratch/drr342/mnist/mnist1k.scale.gpu /scratch/drr342/mnist/mnist.scale.model
+==211385== Accuracy = 92.2% (922/1000) (classification)
+Profiling application: ./svm-predict-gpu /scratch/drr342/mnist/mnist1k.scale.gpu /scratch/drr342/mnist/mnist.scale.model
+==211385== Profiling result:
+            Type  Time(%)      Time     Calls       Avg       Min       Max  Name
+ GPU activities:  100.00%  1.81557s         1  1.81557s  1.81557s  1.81557s  gpu_predict(svm_model*, svm_node**, memory*, double*, int)
+      API calls:   80.96%  1.81562s         2  907.81ms  19.017us  1.81560s  cudaDeviceSynchronize
+                   15.76%  353.39ms         1  353.39ms  353.39ms  353.39ms  cuDevicePrimaryCtxRetain
+                    1.68%  37.698ms      4020  9.3770us  6.1540us  3.6453ms  cudaFree
+                    1.51%  33.813ms      4020  8.4110us  5.2640us  82.167us  cudaMallocManaged
+                    0.04%  809.23us         1  809.23us  809.23us  809.23us  cudaGetDeviceProperties
+                    0.04%  786.91us        96  8.1960us     120ns  344.66us  cuDeviceGetAttribute
+                    0.02%  398.94us         1  398.94us  398.94us  398.94us  cudaLaunchKernel
+                    0.01%  143.05us         1  143.05us  143.05us  143.05us  cuDeviceTotalMem
+                    0.00%  68.807us         1  68.807us  68.807us  68.807us  cuDeviceGetName
+                    0.00%  4.3540us         5     870ns     404ns  2.5470us  cuModuleGetGlobal
+                    0.00%  4.1030us         2  2.0510us     598ns  3.5050us  cuModuleGetFunction
+                    0.00%  3.6960us         2  1.8480us  1.6810us  2.0150us  cudaGetLastError
+                    0.00%  2.7120us         1  2.7120us  2.7120us  2.7120us  cuDeviceGetPCIBusId
+                    0.00%  1.8910us         1  1.8910us  1.8910us  1.8910us  cudaGetDevice
+                    0.00%  1.3240us         3     441ns     145ns     912ns  cuDeviceGetCount
+                    0.00%  1.2920us         2     646ns     387ns     905ns  cuCtxGetCurrent
+                    0.00%  1.2450us         1  1.2450us  1.2450us  1.2450us  cuCtxSetCurrent
+                    0.00%     698ns         2     349ns     154ns     544ns  cuDeviceGet
+                    0.00%     224ns         1     224ns     224ns     224ns  cuCtxGetDevice
+
+==211385== Unified Memory profiling result:
+Device "Tesla V100-SXM2-16GB (0)"
+   Count  Avg Size  Min Size  Max Size  Total Size  Total Time  Name
+     409  121.58KB  4.0000KB  0.9961MB  48.56250MB  5.267744ms  Host To Device
+      14  27.428KB  4.0000KB  60.000KB  384.0000KB  47.13600us  Device To Host
+     335         -         -         -           -  38.49510ms  Gpu page fault groups
+Total CPU Page faults: 164
+
+NVPROF Predicting MNIST 10k on GPU
+==211400== NVPROF is profiling process 211400, command: ./svm-predict-gpu /scratch/drr342/mnist/mnist10k.scale.gpu /scratch/drr342/mnist/mnist.scale.model
+==211400== Accuracy = 94.34% (9434/10000) (classification)
+Profiling application: ./svm-predict-gpu /scratch/drr342/mnist/mnist10k.scale.gpu /scratch/drr342/mnist/mnist.scale.model
+==211400== Profiling result:
+            Type  Time(%)      Time     Calls       Avg       Min       Max  Name
+ GPU activities:  100.00%  3.85851s         1  3.85851s  3.85851s  3.85851s  gpu_predict(svm_model*, svm_node**, memory*, double*, int)
+      API calls:   76.71%  3.85857s         2  1.92929s  27.026us  3.85854s  cudaDeviceSynchronize
+                    8.20%  412.33ms     40020  10.303us  5.1230us  928.52us  cudaMallocManaged
+                    7.70%  387.13ms         1  387.13ms  387.13ms  387.13ms  cuDevicePrimaryCtxRetain
+                    7.36%  370.14ms     40020  9.2480us  6.1120us  3.7353ms  cudaFree
+                    0.02%  796.75us         1  796.75us  796.75us  796.75us  cudaGetDeviceProperties
+                    0.01%  748.15us        96  7.7930us     119ns  305.83us  cuDeviceGetAttribute
+                    0.01%  427.84us         1  427.84us  427.84us  427.84us  cudaLaunchKernel
+                    0.00%  142.71us         1  142.71us  142.71us  142.71us  cuDeviceTotalMem
+                    0.00%  67.729us         1  67.729us  67.729us  67.729us  cuDeviceGetName
+                    0.00%  5.2490us         2  2.6240us  2.1200us  3.1290us  cudaGetLastError
+                    0.00%  4.1130us         5     822ns     348ns  2.6090us  cuModuleGetGlobal
+                    0.00%  3.9580us         2  1.9790us     619ns  3.3390us  cuModuleGetFunction
+                    0.00%  2.5210us         1  2.5210us  2.5210us  2.5210us  cuDeviceGetPCIBusId
+                    0.00%  1.8920us         1  1.8920us  1.8920us  1.8920us  cudaGetDevice
+                    0.00%  1.3170us         2     658ns     380ns     937ns  cuCtxGetCurrent
+                    0.00%  1.2610us         1  1.2610us  1.2610us  1.2610us  cuCtxSetCurrent
+                    0.00%  1.2460us         3     415ns     124ns     876ns  cuDeviceGetCount
+                    0.00%  1.0050us         2     502ns     158ns     847ns  cuDeviceGet
+                    0.00%     206ns         1     206ns     206ns     206ns  cuCtxGetDevice
+
+==211400== Unified Memory profiling result:
+Device "Tesla V100-SXM2-16GB (0)"
+   Count  Avg Size  Min Size  Max Size  Total Size  Total Time  Name
+    1139  63.044KB  4.0000KB  0.9961MB  70.12500MB  8.983616ms  Host To Device
+      25  56.319KB  4.0000KB  508.00KB  1.375000MB  141.7280us  Device To Host
+    1415         -         -         -           -  164.0313ms  Gpu page fault groups
+Total CPU Page faults: 229
+
+NVPROF Predicting MNIST 100k on GPU
+==211476== NVPROF is profiling process 211476, command: ./svm-predict-gpu /scratch/drr342/mnist/mnist100k.scale.gpu /scratch/drr342/mnist/mnist.scale.model
+==211476== Accuracy = 91.011% (91011/100000) (classification)
+Profiling application: ./svm-predict-gpu /scratch/drr342/mnist/mnist100k.scale.gpu /scratch/drr342/mnist/mnist.scale.model
+==211476== Profiling result:
+            Type  Time(%)      Time     Calls       Avg       Min       Max  Name
+ GPU activities:  100.00%  26.5059s         1  26.5059s  26.5059s  26.5059s  gpu_predict(svm_model*, svm_node**, memory*, double*, int)
+      API calls:   68.94%  26.5060s         2  13.2530s  28.815us  26.5060s  cudaDeviceSynchronize
+                   19.93%  7.66263s    400020  19.155us  5.2340us  3.8131ms  cudaMallocManaged
+                   10.22%  3.93085s    400020  9.8260us  6.0150us  22.893ms  cudaFree
+                    0.89%  343.55ms         1  343.55ms  343.55ms  343.55ms  cuDevicePrimaryCtxRetain
+                    0.00%  783.30us         1  783.30us  783.30us  783.30us  cudaGetDeviceProperties
+                    0.00%  745.32us        96  7.7630us     120ns  302.62us  cuDeviceGetAttribute
+                    0.00%  481.29us         1  481.29us  481.29us  481.29us  cudaLaunchKernel
+                    0.00%  145.91us         1  145.91us  145.91us  145.91us  cuDeviceTotalMem
+                    0.00%  68.339us         1  68.339us  68.339us  68.339us  cuDeviceGetName
+                    0.00%  5.6650us         2  2.8320us  1.9620us  3.7030us  cudaGetLastError
+                    0.00%  4.6050us         5     921ns     340ns  2.6840us  cuModuleGetGlobal
+                    0.00%  3.9970us         2  1.9980us     617ns  3.3800us  cuModuleGetFunction
+                    0.00%  2.6050us         1  2.6050us  2.6050us  2.6050us  cuDeviceGetPCIBusId
+                    0.00%  1.9170us         1  1.9170us  1.9170us  1.9170us  cudaGetDevice
+                    0.00%  1.6630us         2     831ns     735ns     928ns  cuCtxGetCurrent
+                    0.00%  1.4490us         3     483ns     124ns  1.0630us  cuDeviceGetCount
+                    0.00%  1.2720us         1  1.2720us  1.2720us  1.2720us  cuCtxSetCurrent
+                    0.00%     735ns         2     367ns     137ns     598ns  cuDeviceGet
+                    0.00%     226ns         1     226ns     226ns     226ns  cuCtxGetDevice
+
+==211476== Unified Memory profiling result:
+Device "Tesla V100-SXM2-16GB (0)"
+   Count  Avg Size  Min Size  Max Size  Total Size  Total Time  Name
+    9104  44.526KB  4.0000KB  0.9961MB  395.8750MB  59.98746ms  Host To Device
+     214  1.4098MB  4.0000KB  2.0000MB  301.6875MB  24.72157ms  Device To Host
+   20748         -         -         -           -   2.361439s  Gpu page fault groups
+Total CPU Page faults: 970
+
+NVPROF Predicting MNIST 1M on GPU
+==211653== NVPROF is profiling process 211653, command: ./svm-predict-gpu /scratch/drr342/mnist/mnist1m.scale.gpu /scratch/drr342/mnist/mnist.scale.model
+==211653== Profiling application: ./svm-predict-gpu /scratch/drr342/mnist/mnist1m.scale.gpu /scratch/drr342/mnist/mnist.scale.model
+==211653== Profiling result:
+No kernels were profiled.
+            Type  Time(%)      Time     Calls       Avg       Min       Max  Name
+      API calls:   99.93%  536.691s   3361371  159.66us  5.2090us  28.732ms  cudaMallocManaged
+                    0.07%  366.27ms         1  366.27ms  366.27ms  366.27ms  cuDevicePrimaryCtxRetain
+                    0.00%  824.87us        96  8.5920us     115ns  359.43us  cuDeviceGetAttribute
+                    0.00%  143.54us         1  143.54us  143.54us  143.54us  cuDeviceTotalMem
+                    0.00%  68.553us         1  68.553us  68.553us  68.553us  cuDeviceGetName
+                    0.00%  7.9450us         5  1.5890us     309ns  4.4200us  cuModuleGetGlobal
+                    0.00%  4.2360us         2  2.1180us     584ns  3.6520us  cuModuleGetFunction
+                    0.00%  2.8770us         1  2.8770us  2.8770us  2.8770us  cuDeviceGetPCIBusId
+                    0.00%  1.5690us         1  1.5690us  1.5690us  1.5690us  cuCtxSetCurrent
+                    0.00%  1.5560us         3     518ns     205ns  1.0650us  cuDeviceGetCount
+                    0.00%  1.2740us         2     637ns     377ns     897ns  cuCtxGetCurrent
+                    0.00%     660ns         2     330ns     150ns     510ns  cuDeviceGet
+                    0.00%     210ns         1     210ns     210ns     210ns  cuCtxGetDevice
+
+==211653== Unified Memory profiling result:
+Device "Tesla V100-SXM2-16GB (0)"
+   Count  Avg Size  Min Size  Max Size  Total Size  Total Time  Name
+       2  32.000KB  4.0000KB  60.000KB  64.00000KB  7.200000us  Device To Host
+       1         -         -         -           -  166.8800us  Gpu page fault groups
+Total CPU Page faults: 8193
+==211653== Warning: Some profiling data are not recorded. Make sure cudaProfilerStop() or cuProfilerStop() is called before application exit to flush profile data.
+======== Error: Application received signal 139
